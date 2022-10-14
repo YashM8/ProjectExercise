@@ -1,7 +1,7 @@
 # Exercise Tracker and Visualizer
 
 I will be developing software that records progress in 
-exercises and routines or workouts selected by the user.
+exercises selected by the user.
 The software would give insight to the user about the
 progress that they are making. For example, percentage
 increase in weight or volume.
