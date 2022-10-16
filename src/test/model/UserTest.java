@@ -86,3 +86,4 @@ public class UserTest {
         assertEquals("Bob Martin", u1.getName());
     }
 }
+

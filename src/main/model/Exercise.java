@@ -59,5 +59,4 @@ public class Exercise {
     public void editName(String newName) {
         this.name = newName;
     }
-
 }
