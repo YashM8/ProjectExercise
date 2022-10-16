@@ -11,8 +11,10 @@ public class User {
     private String name;
     private int height;
     private int weight;
-    private ArrayList<Exercise> exercises;
+    private final ArrayList<Exercise> exercises;
 
+    // REQUIRES: height > 0; weight > 0;
+    // EFFECTS: Constructs an exercise with given sets, reps, weight and name.
     public User(String name, int height, int weight) {
         this.name = name;
         this.height = height;
@@ -20,10 +22,16 @@ public class User {
         this.exercises = new ArrayList<>();
     }
 
+    // MODIFIES: this
+    // REQUIRES: The exercise name to be in the user's exercise list.
+    // EFFECTS: this.exercises and removes all instances of Exercise with <name>.
     public void removeExercise(String name) {
         this.exercises.removeIf(exercise -> Objects.equals(exercise.getName(), name));
     }
 
+    // MODIFIES: this
+    // REQUIRES: sets > 0; reps > 0; weight > 0;
+    // EFFECTS: Adds an instance of Exercise with <name>, <sets>, <reps> and <weight> to this.exercises.
     public void addExercise(String name, int sets, int reps, int weight) {
         this.exercises.add(new Exercise(name, sets, reps, weight));
     }

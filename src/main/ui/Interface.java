@@ -45,13 +45,11 @@ public class Interface {
 
     public static void showExercises(User user1) {
 
-        /*
-        Loops over <user1>'s Exercises and prints them to the console.
-        */
+        // Loops over <user1>'s Exercises and prints them to the console.
 
         System.out.println("Your Exercises are - ");
         for (Exercise exercise : user1.getExercises()) {
-            System.out.println(exercise.getName());
+            System.out.println(String.valueOf(user1.getExercises().indexOf(exercise) + 1) + ". " + exercise.getName());
         }
         System.out.println("=========End of Exercises=========");
     }
