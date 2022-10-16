@@ -22,7 +22,7 @@ public class User {
         this.exercises = new ArrayList<>();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this.
     // REQUIRES: The exercise name to be in the user's exercise list.
     // EFFECTS: this.exercises and removes all instances of Exercise with <name>.
     public void removeExercise(String name) {

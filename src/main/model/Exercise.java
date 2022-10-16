@@ -21,7 +21,7 @@ public class Exercise {
     }
 
     /*
-    Getter methods for the attributes of Exercise object -
+    Getter methods for the attributes of Exercise object.
     */
 
     public int getSets() {

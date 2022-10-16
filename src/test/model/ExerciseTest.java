@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExerciseTest {
     Exercise e1;
 
+    // Tests for getter methods.
+
     @BeforeEach
     void runBefore() {
         e1 = new Exercise("Bench Press", 3, 12, 135);
@@ -32,6 +34,9 @@ class ExerciseTest {
     void testGetWeight() {
         assertEquals(135, e1.getWeight());
     }
+
+
+    // Tests for edit methods.
 
     @Test
     void testEditName() {

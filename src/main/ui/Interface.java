@@ -12,7 +12,7 @@ public class Interface {
     public static void createExercises(User user1) {
 
         /*
-        Creates Exercises by taking user input and adds them to <user1>'s associated list.
+        Creates Exercises by taking user input and adds them to <user1> associated list.
         */
 
         Scanner myObj = new Scanner(System.in);                                    // Scanner object to take user input.

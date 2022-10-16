@@ -16,7 +16,7 @@ public class UserTest {
     String E2_NAME = "Shoulder Press";
     int E2_REPS = 4;
     int E2_SETS = 10;
-    int E2_WEIGHT = 95;
+    int E2_WEIGHT = 115;
 
     @BeforeEach
     void runBefore() {
