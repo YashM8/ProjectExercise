@@ -13,7 +13,6 @@ public class Main {
         Interface.removeExercise("squat", u1);
         Interface.showExercises(u1);
 
-         //Be sure to add 2 exercise named "bench" before running the next line to see the progress.
         Interface.showProgress("bench", u1);
     }
 }
