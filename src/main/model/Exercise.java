@@ -11,7 +11,7 @@ public class Exercise {
     private String name;
 
 
-    // REQUIRES: sets > 0; reps > 0; weight > 0;
+    // REQUIRES: sets > 0; reps > 0; weight > 0 in lbs;
     // EFFECTS: Constructs an exercise with given sets, reps, weight and name.
     public Exercise(String name, int sets, int reps, int weight) {
         this.sets = sets;

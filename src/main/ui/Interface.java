@@ -21,7 +21,7 @@ public class Interface {
 
         while (next) {                                                       // Infinite loop to keep taking user input.
             System.out.println("Enter Exercise Name - ");
-            String ename = myObj.nextLine();
+            String exerciseName = myObj.nextLine();
 
             System.out.println("Enter Sets - ");
             int sets = Integer.parseInt(myObj.nextLine());
@@ -32,7 +32,7 @@ public class Interface {
             System.out.println("Enter Weight - ");
             int weight = Integer.parseInt(myObj.nextLine());
 
-            user1.addExercise(ename, sets, reps, weight);    // Adds an exercise to the users list.
+            user1.addExercise(exerciseName, sets, reps, weight);    // Adds an exercise to the users list.
 
             System.out.println("Add more? y/n ");
             String answer = myObj.nextLine();
@@ -48,19 +48,20 @@ public class Interface {
         // Loops over <user1>'s Exercises and prints them to the console.
 
         System.out.println("Your Exercises are - ");
-        for (Exercise exercise : user1.getExercises()) {
-            System.out.println(String.valueOf(user1.getExercises().indexOf(exercise) + 1) + ". " + exercise.getName());
+        for (Exercise e : user1.getExercises()) {
+            System.out.println((user1.getExercises().indexOf(e) + 1) + ") " + e.getName() + " - " + e.getSets()
+                    + " X " + e.getReps() + " @ " + e.getWeight() + "lbs");
         }
         System.out.println("=========End of Exercises=========");
     }
 
-    public static void removeExercise(String exercisename, User u1) {
+    public static void removeExercise(String exerciseName, User u1) {
 
         /*
-        Removes all Exercises with <exercisename> from <user1>'s associated list
+        Removes all Exercises with <exerciseName> from <user1>'s associated list
         */
 
-        u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), exercisename));
+        u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), exerciseName));
     }
 
     public static void showProgress(String name, User u1) {
@@ -69,28 +70,28 @@ public class Interface {
         */
 
         // Creates a list with all instances of Exercise with <name>
-        ArrayList<Exercise> progresslist = new ArrayList<>();
+        ArrayList<Exercise> progressList = new ArrayList<>();
 
         for (Exercise exercise : u1.getExercises()) {
             if (Objects.equals(exercise.getName(), name)) {
-                progresslist.add(exercise);
+                progressList.add(exercise);
             }
         }
-        Exercise e1 = progresslist.get(progresslist.size() - 1);  // Takes the last 2 Exercises and calculates progress.
-        progresslist.remove(progresslist.size() - 1);
+        Exercise e1 = progressList.get(progressList.size() - 1);  // Takes the last 2 Exercises and calculates progress.
+        progressList.remove(progressList.size() - 1);
 
-        Exercise e2 = progresslist.get(progresslist.size() - 1);
-        progresslist.remove(progresslist.size() - 1);
+        Exercise e2 = progressList.get(progressList.size() - 1);
+        progressList.remove(progressList.size() - 1);
 
-        int weightprogress = (e1.getWeight() - e2.getWeight()) * 100 / e2.getWeight();            //Percentage increase.
+        int weightProgress = (e1.getWeight() - e2.getWeight()) * 100 / e2.getWeight();            //Percentage increase.
 
-        int volumedifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
-        int volumeprogress = volumedifference * 100 / (e2.getReps() * e2.getSets());
+        int volumeDifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
+        int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());
 
         System.out.println("Percentage increase in weight - ");
-        System.out.println(weightprogress);
+        System.out.println(weightProgress);
 
         System.out.println("Percentage increase in volume - ");
-        System.out.println(volumeprogress);
+        System.out.println(volumeProgress);
     }
 }
