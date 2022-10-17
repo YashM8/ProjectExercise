@@ -56,11 +56,9 @@ public class Interface {
     }
 
     public static void removeExercise(String exerciseName, User u1) {
-
         /*
         Removes all Exercises with <exerciseName> from <user1>'s associated list
         */
-
         u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), exerciseName));
     }
 
