@@ -6,7 +6,8 @@ The software would give insight to the user about the
 progress that they are making. For example, percentage
 increase in weight or volume.
 
-Keeping track of your progress is an important
+Keeping track of your progress is an important aspect of exercising and the 
+mobile software available for this is often paid.
 
 ## User Stories -
 
