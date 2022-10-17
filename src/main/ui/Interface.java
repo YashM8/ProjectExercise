@@ -32,7 +32,7 @@ public class Interface {
             System.out.println("Enter Weight - ");
             int weight = Integer.parseInt(myObj.nextLine());
 
-            user1.addExercise(exerciseName, sets, reps, weight);    // Adds an exercise to the users list.
+            user1.addExercise(exerciseName, sets, reps, weight);                  // Adds an exercise to the users list.
 
             System.out.println("Add more? y/n ");
             String answer = myObj.nextLine();
@@ -59,8 +59,11 @@ public class Interface {
         /*
         Removes all Exercises with <exerciseName> from <user1>'s associated list
         */
-        u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), exerciseName));
+        if (!(u1.getExercises().isEmpty())) {
+            u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), exerciseName));
+        }
     }
+
 
     public static void showProgress(String name, User u1) {
         /*
@@ -75,21 +78,25 @@ public class Interface {
                 progressList.add(exercise);
             }
         }
-        Exercise e1 = progressList.get(progressList.size() - 1);  // Takes the last 2 Exercises and calculates progress.
-        progressList.remove(progressList.size() - 1);
 
-        Exercise e2 = progressList.get(progressList.size() - 1);
-        progressList.remove(progressList.size() - 1);
+        if (progressList.size() >= 2) {
+            Exercise e1 = progressList.get(progressList.size() - 1);
+            // Takes the last 2 Exercises and calculates progress.
+            progressList.remove(progressList.size() - 1);
 
-        int weightProgress = (e1.getWeight() - e2.getWeight()) * 100 / e2.getWeight();            //Percentage increase.
+            Exercise e2 = progressList.get(progressList.size() - 1);
+            progressList.remove(progressList.size() - 1);
 
-        int volumeDifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
-        int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());
+            int weightProgress = (e1.getWeight() - e2.getWeight()) * 100 / e2.getWeight();        //Percentage increase.
 
-        System.out.println("Percentage increase in weight - ");
-        System.out.println(weightProgress);
+            int volumeDifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
+            int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());
 
-        System.out.println("Percentage increase in volume - ");
-        System.out.println(volumeProgress);
+            System.out.println("Percentage increase in weight - ");
+            System.out.println(weightProgress);
+
+            System.out.println("Percentage increase in volume - ");
+            System.out.println(volumeProgress);
+        }
     }
 }
