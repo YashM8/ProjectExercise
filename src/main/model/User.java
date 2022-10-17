@@ -26,7 +26,9 @@ public class User {
     // REQUIRES: The exercise name to be in the user's exercise list.
     // EFFECTS: this.exercises and removes all instances of Exercise with <name>.
     public void removeExercise(String name) {
-        this.exercises.removeIf(exercise -> Objects.equals(exercise.getName(), name));
+        if (!(this.exercises.isEmpty())) {
+            this.exercises.removeIf(exercise -> exercise.getName().equals(name));
+        }
     }
 
     // MODIFIES: this
