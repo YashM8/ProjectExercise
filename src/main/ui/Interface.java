@@ -9,11 +9,10 @@ import java.util.Scanner;
 
 public class Interface {
 
+    // EFFECTS: Creates exercises in User's list of exercises.
+    // MODIFIES: User.exercises
+    // REQUIRES: A User
     public static void createExercises(User user1) {
-
-        /*
-        Creates Exercises by taking user input and adds them to <user1> associated list.
-        */
 
         Scanner myObj = new Scanner(System.in);                                    // Scanner object to take user input.
 
@@ -43,10 +42,27 @@ public class Interface {
         }
     }
 
+    // EFFECTS: Constructs a User with given name, height, weight.
+    // MODIFIES: User
+    public static User createUser() {
+        Scanner myObj = new Scanner(System.in);
+
+        System.out.println("Name - ");
+        String name = myObj.nextLine();
+
+        System.out.println("Height - ");
+        int height = Integer.parseInt(myObj.nextLine());
+
+        System.out.println("Weight- ");
+        int weight = Integer.parseInt(myObj.nextLine());
+
+        return new User(name, height, weight);
+    }
+
+    // EFFECTS: Shows exercises in User's list of exercises.
+    // MODIFIES: User
+    // REQUIRES: A User
     public static void showExercises(User user1) {
-
-        // Loops over <user1>'s Exercises and prints them to the console.
-
         System.out.println("Your Exercises are - ");
         for (Exercise e : user1.getExercises()) {
             System.out.println((user1.getExercises().indexOf(e) + 1) + ") " + e.getName() + " - " + e.getSets()
@@ -55,30 +71,39 @@ public class Interface {
         System.out.println("=========End of Exercises=========");
     }
 
-    public static void removeExercise(String exerciseName, User u1) {
-        /*
-        Removes all Exercises with <exerciseName> from <user1>'s associated list
-        */
+    // EFFECTS: Removes exercises in User's list of exercises.
+    // MODIFIES: User.exercises()
+    // REQUIRES: A User
+    public static void removeExercise(User u1) {
+        Scanner myObj = new Scanner(System.in);
+
+        System.out.println("Exercise to remove - ");
+        String removeExerciseName = myObj.nextLine();
+
         if (!(u1.getExercises().isEmpty())) {
-            u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), exerciseName));
+            u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), removeExerciseName));
         }
     }
 
-
-    public static void showProgress(String name, User u1) {
+    // EFFECTS: Shows progress exercises in User's list of exercises.
+    // REQUIRES: A User
+    public static void showProgress(User u1) {
         /*
         Shows progress <u1> has made for Exercise with <name>.
         */
 
-        // Creates a list with all instances of Exercise with <name>
+        Scanner myObj = new Scanner(System.in);
+
+        System.out.println("Show Progress in - ");
+        String progressExerciseName = myObj.nextLine();
+
         ArrayList<Exercise> progressList = new ArrayList<>();
 
         for (Exercise exercise : u1.getExercises()) {
-            if (Objects.equals(exercise.getName(), name)) {
+            if (Objects.equals(exercise.getName(), progressExerciseName)) {
                 progressList.add(exercise);
             }
         }
-
         if (progressList.size() >= 2) {
             Exercise e1 = progressList.get(progressList.size() - 1);
             // Takes the last 2 Exercises and calculates progress.
@@ -92,11 +117,8 @@ public class Interface {
             int volumeDifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
             int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());
 
-            System.out.println("Percentage increase in weight - ");
-            System.out.println(weightProgress);
-
-            System.out.println("Percentage increase in volume - ");
-            System.out.println(volumeProgress);
+            System.out.println("Percentage increase in weight - " + weightProgress);
+            System.out.println("Percentage increase in volume - " + volumeProgress);
         }
     }
 }
