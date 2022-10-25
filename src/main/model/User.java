@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -72,5 +75,23 @@ public class User {
 
     public void editHeight(int newHeight) {
         this.height = newHeight;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("height", height);
+        json.put("weight", weight);
+        json.put("name", name);
+        json.put("exercises", exercisesToJson());
+        return json;
+    }
+
+    private JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Exercise e1 : exercises) {
+            jsonArray.put(e1.toJson());
+        }
+        return jsonArray;
     }
 }

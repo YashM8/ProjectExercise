@@ -4,6 +4,8 @@ package model;
     Creates an exercise with given sets, reps, weight and name.
     */
 
+import org.json.JSONObject;
+
 public class Exercise {
     private int sets;
     private int reps;
@@ -58,5 +60,14 @@ public class Exercise {
 
     public void editName(String newName) {
         this.name = newName;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("sets", sets);
+        json.put("reps", reps);
+        json.put("weight", weight);
+        return json;
     }
 }

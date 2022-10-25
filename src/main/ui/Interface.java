@@ -2,12 +2,99 @@ package ui;
 
 import model.Exercise;
 import model.User;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Interface {
+    private static final String JSON_STORE = "./data/workroom.json";
+    private Scanner input;
+    //private ArrayList<User> users;
+    User u1;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+    public Interface() throws FileNotFoundException {
+        u1 = createUser();
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        runInterface();
+    }
+
+    private void runInterface() {
+        boolean keepGoing = true;
+        String command = null;
+        input = new Scanner(System.in);
+
+        while (keepGoing) {
+            displayMenu();
+            command = input.next();
+            command = command.toLowerCase();
+
+            if (command.equals("q")) {
+                keepGoing = false;
+            } else {
+                processCommand(command);
+            }
+        }
+        System.out.println("\nGoodbye!");
+    }
+
+    private void displayMenu() {
+        System.out.println("\nSelect from:");
+        System.out.println("\ta -> Add Exercise");
+        System.out.println("\tp -> Print Exercises");
+        System.out.println("\ts -> Save Exercises");
+        System.out.println("\tl -> Load Exercises");
+        System.out.println("\tq -> Quit");
+    }
+
+    private void processCommand(String command) {
+        switch (command) {
+            case "a" -> createExercises(u1);
+            case "p" -> printExercises();
+            case "s" -> saveExercises();
+            case "l" -> loadExercises();
+            default -> System.out.println("Selection not valid...");
+        }
+    }
+
+    private void saveExercises() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(u1);
+            jsonWriter.close();
+            System.out.println("Saved " + u1.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private void loadExercises() {
+        try {
+            u1 = jsonReader.read();
+            System.out.println("Loaded " + u1.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private void printExercises() {
+        List<Exercise> exercises = u1.getExercises();
+        System.out.println("Your Exercises are - ");
+        for (Exercise e : exercises) {
+            System.out.println((e.getName() + " - " + e.getSets()
+                    + " X " + e.getReps() + " @ " + e.getWeight() + "lbs"));
+        }
+        System.out.println("=========End of Exercises=========");
+    }
 
     // EFFECTS: Creates exercises in User's list of exercises.
     // MODIFIES: User.exercises
