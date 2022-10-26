@@ -15,20 +15,38 @@ import java.util.Scanner;
 public class Interface {
     private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
-    //private ArrayList<User> users;
-    User u1;
+    private ArrayList<User> users;
+    private User u1;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    public Interface() throws FileNotFoundException {
-        u1 = createUser();
+
+    // EFFECTS: constructs Interface and runs application
+    public Interface() throws IOException {
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        chooseUser();
         runInterface();
     }
 
+    // EFFECTS: processes user input
+    private void chooseUser() throws IOException {
+        System.out.println("New user? y/n");
+        String newUser = input.nextLine();
+
+        if (newUser.equals("y")) {
+            u1 = createUser();
+        } else {
+            u1 = jsonReader.readUser();
+            loadExercises();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user input
     private void runInterface() {
+
         boolean keepGoing = true;
         String command = null;
         input = new Scanner(System.in);
@@ -37,16 +55,16 @@ public class Interface {
             displayMenu();
             command = input.next();
             command = command.toLowerCase();
-
             if (command.equals("q")) {
                 keepGoing = false;
             } else {
                 processCommand(command);
             }
         }
-        System.out.println("\nGoodbye!");
+        System.out.println("\n======End of Program======");
     }
 
+    // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> Add Exercise");
@@ -56,6 +74,8 @@ public class Interface {
         System.out.println("\tq -> Quit");
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user command
     private void processCommand(String command) {
         switch (command) {
             case "a" -> createExercises(u1);
@@ -66,6 +86,7 @@ public class Interface {
         }
     }
 
+    // EFFECTS: saves the workroom to file
     private void saveExercises() {
         try {
             jsonWriter.open();
@@ -77,6 +98,8 @@ public class Interface {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
     private void loadExercises() {
         try {
             u1 = jsonReader.read();
@@ -86,6 +109,7 @@ public class Interface {
         }
     }
 
+    // EFFECTS: prints all the thingies in workroom to the console
     private void printExercises() {
         List<Exercise> exercises = u1.getExercises();
         System.out.println("Your Exercises are - ");
@@ -101,11 +125,11 @@ public class Interface {
     // REQUIRES: A User
     public static void createExercises(User user1) {
 
-        Scanner myObj = new Scanner(System.in);                                    // Scanner object to take user input.
+        Scanner myObj = new Scanner(System.in);
 
         boolean next = true;
 
-        while (next) {                                                       // Infinite loop to keep taking user input.
+        while (next) {
             System.out.println("Enter Exercise Name - ");
             String exerciseName = myObj.nextLine();
 
@@ -118,12 +142,12 @@ public class Interface {
             System.out.println("Enter Weight - ");
             int weight = Integer.parseInt(myObj.nextLine());
 
-            user1.addExercise(exerciseName, sets, reps, weight);                  // Adds an exercise to the users list.
+            user1.addExercise(exerciseName, sets, reps, weight);
 
             System.out.println("Add more? y/n ");
             String answer = myObj.nextLine();
 
-            if (!answer.equals("y")) {                                      // Terminates loop unless the user enters y.
+            if (!answer.equals("y")) {
                 next = false;
             }
         }
@@ -175,10 +199,6 @@ public class Interface {
     // EFFECTS: Shows progress exercises in User's list of exercises.
     // REQUIRES: A User
     public static void showProgress(User u1) {
-        /*
-        Shows progress <u1> has made for Exercise with <name>.
-        */
-
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Show Progress in - ");
@@ -199,7 +219,7 @@ public class Interface {
             Exercise e2 = progressList.get(progressList.size() - 1);
             progressList.remove(progressList.size() - 1);
 
-            int weightProgress = (e1.getWeight() - e2.getWeight()) * 100 / e2.getWeight();        //Percentage increase.
+            int weightProgress = (e1.getWeight() - e2.getWeight()) * 100 / e2.getWeight();
 
             int volumeDifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
             int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());

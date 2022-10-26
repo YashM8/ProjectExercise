@@ -3,9 +3,10 @@ package ui;
 import model.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        User u1 = Interface.createUser();
 //
 //        Interface.createExercises(u1);

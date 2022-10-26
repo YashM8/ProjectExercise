@@ -12,6 +12,9 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class JsonReader {
+
+    // Represents a reader that reads workroom from JSON data stored in file
+
     private String source;
 
     // EFFECTS: constructs reader to read from source file
@@ -19,12 +22,25 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads entire user from file and returns it;
     // throws IOException if an error occurs reading data from file
     public User read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseUser(jsonObject);
+    }
+
+    // EFFECTS: reads user from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    public User readUser() throws IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+
+        String name = jsonObject.getString("name");
+        int height = jsonObject.getInt("height");
+        int weight = jsonObject.getInt("weight");
+
+        return new User(name, height, weight);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -36,48 +52,29 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-//    // EFFECTS: parses workroom from JSON object and returns it
-//    private User parseUser(JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        int height = jsonObject.getInt("height");
-//        int weight = jsonObject.getInt("height");
-//
-//        User u1 = new User(name, height, weight);
-//
-//        JSONArray jsonArrayForExercises = jsonObject.getJSONArray("exercises");
-//
-//        for (Object jsonExercises: jsonArrayForExercises) {
-//            String nameE = jsonObject.getString("name");
-//            int setsE = jsonObject.getInt("sets");
-//            int repsE = jsonObject.getInt("reps");
-//            int weightE = jsonObject.getInt("weight");
-//
-//            u1.getExercises().add(new Exercise(nameE, setsE, repsE, weightE));
-//        }
-//        return u1;
-
+    // EFFECTS: parses workroom from JSON object and returns it
     private User parseUser(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int height = jsonObject.getInt("height");
         int weight = jsonObject.getInt("weight");
         User u1 = new User(name, height, weight);
-        addThingies(u1, jsonObject);
+        addExercises(u1, jsonObject);
         return u1;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
-    private void addThingies(User u1, JSONObject jsonObject) {
+    // MODIFIES: User
+    // EFFECTS: parses thingies from JSON object and adds them to user
+    private void addExercises(User u1, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("exercises");
         for (Object json : jsonArray) {
             JSONObject nextThingy = (JSONObject) json;
-            addThingy(u1, nextThingy);
+            addExercise(u1, nextThingy);
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-    private void addThingy(User u1, JSONObject jsonObject) {
+    // MODIFIES: User
+    // EFFECTS: parses thingy from JSON object and adds it to user
+    private void addExercise(User u1, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int sets = jsonObject.getInt("sets");
         int reps = jsonObject.getInt("reps");

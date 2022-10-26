@@ -1,6 +1,19 @@
 {
-    "exercises": [],
-    "name": "matt",
-    "weight": 143,
-    "height": 424
+    "exercises": [
+        {
+            "reps": 12,
+            "sets": 3,
+            "name": "vsew34",
+            "weight": 134
+        },
+        {
+            "reps": 12,
+            "sets": 3,
+            "name": "srbwebet",
+            "weight": 135
+        }
+    ],
+    "name": "yash",
+    "weight": 12,
+    "height": 12
 }

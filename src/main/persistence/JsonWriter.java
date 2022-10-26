@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class JsonWriter {
+
+    // Represents a writer that reads workroom from JSON data stored in file
+
     private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
