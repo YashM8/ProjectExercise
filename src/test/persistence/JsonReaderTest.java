@@ -27,7 +27,7 @@ public class JsonReaderTest {
     void testReaderEmptyWorkRoom() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
         try {
-            User u1 = reader.readUser();
+            User u1 = reader.read();
             assertEquals("Bob", u1.getName());
             assertEquals(170, u1.getHeight());
             assertEquals(135, u1.getWeight());
@@ -50,6 +50,20 @@ public class JsonReaderTest {
             assertEquals("bench", exercises.get(0).getName());
             assertEquals("squat", exercises.get(1).getName());
 
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
+    void testReadUser() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
+        try {
+            User u1 = reader.readUser();
+            assertEquals("Bob", u1.getName());
+            assertEquals(170, u1.getHeight());
+            assertEquals(135, u1.getWeight());
+            assertTrue(u1.getExercises().isEmpty());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
