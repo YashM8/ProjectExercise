@@ -32,19 +32,6 @@ public class JsonReader {
         return parseUser(jsonObject);
     }
 
-    // EFFECTS: reads user from file and returns it;
-    // throws IOException if an error occurs reading data from file
-    public User readUser() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-
-        String name = jsonObject.getString("name");
-        int height = jsonObject.getInt("height");
-        int weight = jsonObject.getInt("weight");
-
-        return new User(name, height, weight);
-    }
-
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
