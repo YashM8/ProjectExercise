@@ -1,5 +1,10 @@
 {
-    "exercises": [],
+    "exercises": [{
+        "reps": 12,
+        "sets": 3,
+        "name": "bench",
+        "weight": 135
+    }],
     "name": "Yash",
     "weight": 200,
     "height": 180

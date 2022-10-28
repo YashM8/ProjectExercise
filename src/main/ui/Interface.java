@@ -206,8 +206,6 @@ public class Interface {
         if (!(u1.getExercises().isEmpty())) {
             u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), removeExerciseName));
             System.out.println("Removed Exercise");
-        } else {
-            System.out.println("You haven't logged any exercises");
         }
     }
 
