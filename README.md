@@ -11,13 +11,27 @@ mobile software available for this is often paid.
 
 ## User Stories -
 
-- As a user, I want to be able to add an exercise with a specific number of sets and repetitions.
+- As a user, I want to be able to add an Exercise.
+
+
+- As a user, I want to be able to specify my Exercise with sets, reps and weight.
 
 
 - As a user, I want to be able to create a user with a name, weight and height.
+
+
+- As a user, I want to be able to check if I'm a new or existing user.
 
 
 - As a user, I want to be able to see my progress in each exercise graphically and numerically.
 
 
 - As a user, I want to be able to remove an exercise.
+
+
+- As a user, I want to be able to save my Exercises to file.
+
+
+- As a user, I want to be able to be able to load my Exercises from file  
+  
+

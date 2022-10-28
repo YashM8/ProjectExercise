@@ -1,7 +1,5 @@
 package ui;
 
-import model.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
