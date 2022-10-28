@@ -77,12 +77,16 @@ public class Interface {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        switch (command) {
-            case "a" -> createExercises(u1);
-            case "p" -> printExercises();
-            case "s" -> saveExercises();
-            case "l" -> loadExercises();
-            default -> System.out.println("Selection not valid...");
+        if (command.equals("a")) {
+            createExercises(u1);
+        } else if (command.equals("p")) {
+            printExercises();
+        } else if (command.equals("s")) {
+            saveExercises();
+        } else if (command.equals("l")) {
+            loadExercises();
+        } else {
+            System.out.println("Selection not valid...");
         }
     }
 

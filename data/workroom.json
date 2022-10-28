@@ -3,17 +3,17 @@
         {
             "reps": 12,
             "sets": 3,
-            "name": "vsew34",
-            "weight": 134
+            "name": "bench",
+            "weight": 135
         },
         {
-            "reps": 12,
-            "sets": 3,
-            "name": "srbwebet",
+            "reps": 14,
+            "sets": 4,
+            "name": "squat",
             "weight": 135
         }
     ],
-    "name": "yash",
-    "weight": 12,
-    "height": 12
+    "name": "Bob",
+    "weight": 135,
+    "height": 170
 }
