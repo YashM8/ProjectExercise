@@ -92,16 +92,8 @@ public class JsonReaderTest {
             User u1 = reader.readUser();
             fail("IOException expected");
 
-            Throwable exception = assertThrows(IOException.class, () -> {
-                throw new IOException("a message");
-            });
-            assertEquals("a message", exception.getMessage());
-
         } catch (IOException e) {
-            Throwable exception = assertThrows(IOException.class, () -> {
-                throw new IOException("a message");
-            });
-            assertEquals("a message", exception.getMessage());
+            // pass
         }
     }
 }
