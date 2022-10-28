@@ -17,9 +17,6 @@ mobile software available for this is often paid.
 - As a user, I want to be able to specify my Exercise with sets, reps and weight.
 
 
-- As a user, I want to be able to create a user with a name, weight and height.
-
-
 - As a user, I want to be able to check if I'm a new or existing user.
 
 

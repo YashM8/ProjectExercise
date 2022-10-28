@@ -1,3 +1,5 @@
+// Much of the code has been borrowed from WorkRoom example provided.
+
 package persistence;
 
 import model.Exercise;
