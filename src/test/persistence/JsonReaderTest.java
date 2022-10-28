@@ -56,16 +56,13 @@ public class JsonReaderTest {
     }
 
     @Test
-    void testReadUser() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
+    void testReadUserNonExistentFile() {
+        JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
             User u1 = reader.readUser();
-            assertEquals("Bob", u1.getName());
-            assertEquals(170, u1.getHeight());
-            assertEquals(135, u1.getWeight());
-            assertTrue(u1.getExercises().isEmpty());
+            fail("IOException expected");
         } catch (IOException e) {
-            fail("Couldn't read from file");
+            // pass
         }
     }
 }
