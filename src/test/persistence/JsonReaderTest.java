@@ -27,7 +27,7 @@ public class JsonReaderTest {
     void testReaderEmptyWorkRoom() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
         try {
-            User u1 = reader.read();
+            User u1 = reader.readUser();
             assertEquals("Bob", u1.getName());
             assertEquals(170, u1.getHeight());
             assertEquals(135, u1.getWeight());
