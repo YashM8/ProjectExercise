@@ -71,6 +71,8 @@ public class Interface {
         System.out.println("\tp -> Print Exercises");
         System.out.println("\ts -> Save Exercises");
         System.out.println("\tl -> Load Exercises");
+        System.out.println("\tr -> Remove Exercise");
+        System.out.println("\tsp -> Show Progress");
         System.out.println("\tq -> Quit");
     }
 
@@ -85,6 +87,10 @@ public class Interface {
             saveExercises();
         } else if (command.equals("l")) {
             loadExercises();
+        } else if (command.equals("r")) {
+            removeExercise(u1);
+        } else if (command.equals("sp")) {
+            showProgress(u1);
         } else {
             System.out.println("Selection not valid...");
         }
@@ -211,7 +217,7 @@ public class Interface {
         ArrayList<Exercise> progressList = new ArrayList<>();
 
         for (Exercise exercise : u1.getExercises()) {
-            if (Objects.equals(exercise.getName(), progressExerciseName)) {
+            if (Objects.equals(exercise.getName().toLowerCase(), progressExerciseName)) {
                 progressList.add(exercise);
             }
         }
@@ -230,6 +236,8 @@ public class Interface {
 
             System.out.println("Percentage increase in weight - " + weightProgress);
             System.out.println("Percentage increase in volume - " + volumeProgress);
+        } else {
+            System.out.println("Exercise doesn't exist OR Two instances of the same exercise have not been logged yet");
         }
     }
 }
