@@ -9,27 +9,26 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Interface {
     private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
-    private ArrayList<User> users;
     private User u1;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    JsonWriter jsonWriter;
+    JsonReader jsonReader;
 
 
     // EFFECTS: constructs Interface and runs application
+    public void oldInterface() throws IOException {
+        chooseUser();
+        runInterface();
+    }
+
     public Interface() throws IOException {
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        chooseUser();
-        runInterface();
     }
 
     // EFFECTS: processes user input
@@ -86,7 +85,7 @@ public class Interface {
         } else if (command.equals("p")) {
             printExercises();
         } else if (command.equals("s")) {
-            saveExercises();
+            saveExercises(u1);
         } else if (command.equals("l")) {
             loadExercises();
         } else if (command.equals("r")) {
@@ -99,7 +98,7 @@ public class Interface {
     }
 
     // EFFECTS: saves the workroom to file
-    private void saveExercises() {
+    void saveExercises(User u1) {
         try {
             jsonWriter.open();
             jsonWriter.write(u1);
@@ -112,7 +111,7 @@ public class Interface {
 
     // MODIFIES: this
     // EFFECTS: loads workroom from file
-    private void loadExercises() {
+    void loadExercises() {
         try {
             u1 = jsonReader.read();
             System.out.println("Loaded " + u1.getName() + " from " + JSON_STORE);
@@ -135,7 +134,7 @@ public class Interface {
     // EFFECTS: Creates exercises in User's list of exercises.
     // MODIFIES: User.exercises
     // REQUIRES: A User
-    public static void createExercises(User user1) {
+    public void createExercises(User user1) {
 
         Scanner myObj = new Scanner(System.in);
 
@@ -154,7 +153,9 @@ public class Interface {
             System.out.println("Enter Weight - ");
             int weight = Integer.parseInt(myObj.nextLine());
 
-            user1.addExercise(exerciseName, sets, reps, weight);
+            Exercise e1 = new Exercise(exerciseName, sets, reps, weight);
+
+            user1.addExercise(e1);
 
             System.out.println("Add more? y/n ");
             String answer = myObj.nextLine();
@@ -167,7 +168,7 @@ public class Interface {
 
     // EFFECTS: Constructs a User with given name, height, weight.
     // MODIFIES: User
-    public static User createUser() {
+    public User createUser() {
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Name - ");
@@ -185,19 +186,21 @@ public class Interface {
     // EFFECTS: Shows exercises in User's list of exercises.
     // MODIFIES: User
     // REQUIRES: A User
-    public static void showExercises(User user1) {
+    public String showExercises(User user1) {
         System.out.println("Your Exercises are - ");
+        String exe = "";
         for (Exercise e : user1.getExercises()) {
-            System.out.println((user1.getExercises().indexOf(e) + 1) + ") " + e.getName() + " - " + e.getSets()
-                    + " X " + e.getReps() + " @ " + e.getWeight() + "lbs");
+            exe += (user1.getExercises().indexOf(e) + 1) + ") " + e.getName() + " - " + e.getSets()
+                    + " X " + e.getReps() + " @ " + e.getWeight() + "lbs" + "\n";
+            exe += "\n";
         }
-        System.out.println("=========End of Exercises=========");
+        return exe;
     }
 
     // EFFECTS: Removes exercises in User's list of exercises.
     // MODIFIES: User.exercises()
     // REQUIRES: A User
-    public static void removeExercise(User u1) {
+    public void removeExercise(User u1) {
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Exercise to remove - ");
@@ -211,7 +214,7 @@ public class Interface {
 
     // EFFECTS: Shows progress exercises in User's list of exercises.
     // REQUIRES: A User
-    public static void showProgress(User u1) {
+    public void showProgress(User u1) {
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Show Progress in - ");
@@ -241,6 +244,34 @@ public class Interface {
             System.out.println("Percentage increase in volume - " + volumeProgress);
         } else {
             System.out.println("Exercise doesn't exist OR Two instances of the same exercise have not been logged yet");
+        }
+    }
+
+    public User parseAndUser(String str) {
+        List<String> parsedList = Arrays.asList(str.split(","));
+
+        String name = parsedList.get(0);
+        String strHeight = parsedList.get(1).strip();
+        String strWeight = parsedList.get(2).strip();
+
+        return new User(name, Integer.parseInt(strHeight), Integer.parseInt(strWeight));
+    }
+
+    public Exercise parseAndExercise(String str) {
+        List<String> parsedList = Arrays.asList(str.split(","));
+
+        String name = parsedList.get(0);
+        String strSets = parsedList.get(1).strip();
+        String strReps = parsedList.get(2).strip();
+        String strWeight = parsedList.get(3).strip();
+
+        return new Exercise(name, Integer.parseInt(strSets), Integer.parseInt(strReps), Integer.parseInt(strWeight));
+    }
+
+    public void removeWithName(User u1, String name) {
+        if (!(u1.getExercises().isEmpty())) {
+            u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), name));
+            System.out.println("Removed Exercise");
         }
     }
 }

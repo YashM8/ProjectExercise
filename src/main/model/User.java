@@ -37,8 +37,8 @@ public class User {
     // MODIFIES: this
     // REQUIRES: sets > 0; reps > 0; weight > 0;
     // EFFECTS: Adds an instance of Exercise with <name>, <sets>, <reps> and <weight> to this.exercises.
-    public void addExercise(String name, int sets, int reps, int weight) {
-        this.exercises.add(new Exercise(name, sets, reps, weight));
+    public void addExercise(Exercise e1) {
+        this.exercises.add(e1);
     }
 
     /*

@@ -25,8 +25,8 @@ public class UserTest {
 
     @Test
     void testAddExercise() {
-        u1.addExercise(E1_NAME, E1_SETS, E1_REPS, E1_WEIGHT);
-        u1.addExercise(E2_NAME, E2_SETS, E2_REPS, E2_WEIGHT);
+        //u1.addExercise(E1_NAME, E1_SETS, E1_REPS, E1_WEIGHT);
+        //u1.addExercise(E2_NAME, E2_SETS, E2_REPS, E2_WEIGHT);
 
         assertEquals(2, u1.getExercises().size());
 
@@ -36,8 +36,8 @@ public class UserTest {
 
     @Test
     void testRemoveExercise() {
-        u1.addExercise(E1_NAME, E1_SETS, E1_REPS, E1_WEIGHT);
-        u1.addExercise(E2_NAME, E2_SETS, E2_REPS, E2_WEIGHT);
+        //u1.addExercise(E1_NAME, E1_SETS, E1_REPS, E1_WEIGHT);
+        //u1.addExercise(E2_NAME, E2_SETS, E2_REPS, E2_WEIGHT);
 
         u1.removeExercise("Bench Press");
         assertEquals(1, u1.getExercises().size());

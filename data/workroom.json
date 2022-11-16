@@ -1,11 +1,11 @@
 {
     "exercises": [{
-        "reps": 12,
+        "reps": 8,
         "sets": 3,
-        "name": "bench",
-        "weight": 135
+        "name": "Bench",
+        "weight": 95
     }],
-    "name": "Bob",
-    "weight": 200,
-    "height": 180
+    "name": "Matt",
+    "weight": 135,
+    "height": 170
 }
