@@ -136,11 +136,10 @@ public class GUI {
             }
         });
 
-        ImageIcon picture = new ImageIcon("./data/MSP.png");
-        JLabel picLabel = new JLabel(picture);
-        picLabel.setVerticalAlignment(JLabel.BOTTOM);
-        picLabel.setHorizontalAlignment(JLabel.CENTER);
-        picLabel.setSize(30, 30);
+        ImageIcon image = new ImageIcon("./data/MSP.png");
+        JLabel picLabel = new JLabel();
+        picLabel.setSize(200, 200);
+        picLabel.setIcon(image);
 
         // Adding buttons
         frame.add(yes);
