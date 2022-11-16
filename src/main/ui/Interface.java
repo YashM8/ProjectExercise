@@ -247,6 +247,8 @@ public class Interface {
         }
     }
 
+    // EFFECTS: Parses User from text field.
+    // REQUIRES: A string.
     public User parseAndUser(String str) {
         List<String> parsedList = Arrays.asList(str.split(","));
 
@@ -257,6 +259,8 @@ public class Interface {
         return new User(name, Integer.parseInt(strHeight), Integer.parseInt(strWeight));
     }
 
+    // EFFECTS: Parses Exercises from text field.
+    // REQUIRES: A string.
     public Exercise parseAndExercise(String str) {
         List<String> parsedList = Arrays.asList(str.split(","));
 
@@ -268,6 +272,8 @@ public class Interface {
         return new Exercise(name, Integer.parseInt(strSets), Integer.parseInt(strReps), Integer.parseInt(strWeight));
     }
 
+    // EFFECTS: Removes exercises for <u1> with <name> from the text field.
+    // REQUIRES: A string and User.
     public void removeWithName(User u1, String name) {
         if (!(u1.getExercises().isEmpty())) {
             u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), name));
