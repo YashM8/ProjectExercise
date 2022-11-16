@@ -31,6 +31,11 @@ public class User {
     public void removeExercise(String name) {
         if (!(this.exercises.isEmpty())) {
             this.exercises.removeIf(exercise -> exercise.getName().equals(name));
+//            for (Exercise exercise: this.exercises) {
+//                if (exercise.getName().equals(name)) {
+//                    this.exercises.remove(exercise);
+//                }
+//            }
         }
     }
 
