@@ -17,7 +17,7 @@ mobile software available for this is often paid.
 - As a user, I want to be able to specify my Exercise with sets, reps and weight.
 
 
-- As a user, I want to be able to see my progress in each exercise graphically and numerically.
+- As a user, I want to be able to see my progress in each exercise.
 
 
 - As a user, I want to be able to remove an exercise.
@@ -27,5 +27,24 @@ mobile software available for this is often paid.
 
 
 - As a user, I want to be able to be able to load my Exercises from file  
-  
 
+## Instructions for Grader -
+
+- Select the Yes button if you are a new user, otherwise select No.
+
+
+- If you are a new user, add your details in a comma separated format in the small text label -
+Name, Height, Weight
+
+
+- To add exercises, enter them in the text area in a comma separated format -
+Name, Sets, Reps, Weight
+
+
+- Click the Add button to add exercises. This also saves them to the JSON file.
+
+
+- To remove an exercise, type the name of the exercise into the text area and click remove.
+
+
+- To show the exercises, click the Show button. This loads the exercises from the JSON file.
