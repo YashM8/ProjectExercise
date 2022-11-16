@@ -250,9 +250,9 @@ public class Interface {
     public User parseAndUser(String str) {
         List<String> parsedList = Arrays.asList(str.split(","));
 
-        String name = parsedList.get(0);
-        String strHeight = parsedList.get(1);
-        String strWeight = parsedList.get(2);
+        String name = parsedList.get(0).trim();
+        String strHeight = parsedList.get(1).trim();
+        String strWeight = parsedList.get(2).trim();
 
         return new User(name, Integer.parseInt(strHeight), Integer.parseInt(strWeight));
     }
@@ -260,10 +260,10 @@ public class Interface {
     public Exercise parseAndExercise(String str) {
         List<String> parsedList = Arrays.asList(str.split(","));
 
-        String name = parsedList.get(0);
-        String strSets = parsedList.get(1);
-        String strReps = parsedList.get(2);
-        String strWeight = parsedList.get(3);
+        String name = parsedList.get(0).trim();
+        String strSets = parsedList.get(1).trim();
+        String strReps = parsedList.get(2).trim();
+        String strWeight = parsedList.get(3).trim();
 
         return new Exercise(name, Integer.parseInt(strSets), Integer.parseInt(strReps), Integer.parseInt(strWeight));
     }
