@@ -261,9 +261,9 @@ public class Interface {
         List<String> parsedList = Arrays.asList(str.split(","));
 
         String name = parsedList.get(0);
-        String strSets = parsedList.get(1).strip();
-        String strReps = parsedList.get(2).strip();
-        String strWeight = parsedList.get(3).strip();
+        String strSets = parsedList.get(1);
+        String strReps = parsedList.get(2);
+        String strWeight = parsedList.get(3);
 
         return new Exercise(name, Integer.parseInt(strSets), Integer.parseInt(strReps), Integer.parseInt(strWeight));
     }
