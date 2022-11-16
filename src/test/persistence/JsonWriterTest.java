@@ -48,8 +48,10 @@ public class JsonWriterTest {
     void testWriterGeneralWorkroom() {
         try {
             User u1 = new User("Bob", 170, 135);
-            u1.addExercise("bench", 3, 12, 135);
-            u1.addExercise("squat", 4, 14, 135);
+            Exercise e1 = new Exercise("bench", 3, 12, 135);
+            Exercise e2 = new Exercise("squat", 4, 14, 135);
+            u1.addExercise(e1);
+            u1.addExercise(e2);
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
             writer.open();
             writer.write(u1);
