@@ -251,8 +251,8 @@ public class Interface {
         List<String> parsedList = Arrays.asList(str.split(","));
 
         String name = parsedList.get(0);
-        String strHeight = parsedList.get(1).strip();
-        String strWeight = parsedList.get(2).strip();
+        String strHeight = parsedList.get(1);
+        String strWeight = parsedList.get(2);
 
         return new User(name, Integer.parseInt(strHeight), Integer.parseInt(strWeight));
     }
