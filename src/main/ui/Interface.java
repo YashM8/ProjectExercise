@@ -191,8 +191,7 @@ public class Interface {
         String exe = "";
         for (Exercise e : user1.getExercises()) {
             exe += (user1.getExercises().indexOf(e) + 1) + ") " + e.getName() + " - " + e.getSets()
-                    + " X " + e.getReps() + " @ " + e.getWeight() + "lbs" + "\n";
-            exe += "\n";
+                    + " X " + e.getReps() + " @ " + e.getWeight() + "lbs" + "\n \n";
         }
         return exe;
     }
@@ -219,7 +218,7 @@ public class Interface {
         ArrayList<Exercise> progressList = new ArrayList<>();
 
         for (Exercise exercise : u1.getExercises()) {
-            if (Objects.equals(exercise.getName().toLowerCase(), name.toLowerCase())) {
+            if (Objects.equals(exercise.getName().toLowerCase().trim(), name.toLowerCase().trim())) {
                 progressList.add(exercise);
             }
         }
@@ -241,7 +240,7 @@ public class Interface {
             exe += ("Percentage increase in volume - " + volumeProgress);
             return exe;
         } else {
-            return "Exercise doesn't exist" + "\n" + "OR" + "\n" + "2 Instances haven't been logged yet";
+            return "Exercise doesn't exist." + "\n \n" + "OR" + "\n \n" + "Two Instances haven't been logged yet.";
         }
     }
 

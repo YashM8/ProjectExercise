@@ -152,14 +152,9 @@ public class GUI {
             // EFFECTS: Shows progress in Exercises.
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
-                try {
-                    u1 = interFace.jsonReader.read();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
                 if (u1 != null) {
                     String name = tfExercises.getText();
-                    String toPrint = interFace.showProgress(u1,name);
+                    String toPrint = interFace.showProgress(u1, name.trim());
                     tfExercises.setText(toPrint);
                 } else {
                     tfExercises.setText("Select New or Existing User");
@@ -194,7 +189,7 @@ public class GUI {
         frame.add(panelE);
 
         // Adding picture
-        frame.add(picLabel);
+        //frame.add(picLabel);
 
         frame.setVisible(true);
     }
