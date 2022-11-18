@@ -238,13 +238,10 @@ public class Interface {
             int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());
 
             exe += ("Percentage increase in weight - " + weightProgress + "\n");
-            exe +=("Percentage increase in volume - " + volumeProgress);
+            exe += ("Percentage increase in volume - " + volumeProgress);
             return exe;
         } else {
-            return """
-                    Exercise doesn't exist
-                    OR
-                    Two instances of the same exercise have not been logged yet""";
+            return "Exercise doesn't exist" + "\n" + "OR" + "\n" + "2 Instances haven't been logged yet";
         }
     }
 
