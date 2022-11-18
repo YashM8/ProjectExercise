@@ -1,4 +1,4 @@
-# Exercise Tracker and Visualizer
+# Exercise Tracker
 
 I will be developing software that records progress in
 exercises put in by the user.
