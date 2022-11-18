@@ -189,7 +189,7 @@ public class GUI {
         frame.add(panelE);
 
         // Adding picture
-        //frame.add(picLabel);
+        frame.add(picLabel);
 
         frame.setVisible(true);
     }
