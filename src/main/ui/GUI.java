@@ -13,7 +13,6 @@ public class GUI {
     private User u1;
     private Interface interFace = new Interface();
 
-
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     GUI() throws IOException {
 
@@ -57,7 +56,6 @@ public class GUI {
         yes.setText("Yes");
         yes.setFont(new Font("San Francisco", Font.PLAIN, 15));
         yes.addActionListener(new ActionListener() {
-            @Override
             // EFFECTS: Creates new User.
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +74,6 @@ public class GUI {
         no.setText("No");
         no.setFont(new Font("San Francisco",Font.PLAIN, 15));
         no.addActionListener(new ActionListener() {
-            @Override
             // EFFECTS: Keeps original User.
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
@@ -96,7 +93,6 @@ public class GUI {
         add.setText("Add");
         add.setFont(new Font("San Francisco", Font.PLAIN, 15));
         add.addActionListener(new ActionListener() {
-            @Override
             // EFFECTS: Adds Exercises.
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
@@ -114,10 +110,9 @@ public class GUI {
         // Remove button
         JButton remove = new JButton();
         remove.setText("Remove");
-        remove.setBounds(200, 500, 100, 50);
+        remove.setBounds(140, 500, 100, 50);
         remove.setFont(new Font("San Francisco", Font.PLAIN, 15));
         remove.addActionListener(new ActionListener() {
-            @Override
             // EFFECTS: Removes Exercises.
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
@@ -134,18 +129,40 @@ public class GUI {
         // Show button
         JButton show = new JButton();
         show.setText("Show");
-        show.setBounds(380, 500, 100, 50);
+        show.setBounds(260, 500, 100, 50);
         show.setFont(new Font("San Francisco", Font.PLAIN, 15));
         show.addActionListener(new ActionListener() {
-            @Override
             // EFFECTS: Shows Exercises.
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
                 if (u1 != null) {
                     tfExercises.setText(interFace.showExercises(u1));
-                    System.out.println("Show Button");
                 } else {
-                    tfExercises.setText("Select User");
+                    tfExercises.setText("Select New or Existing User");
+                }
+            }
+        });
+
+        // Progress button
+        JButton progress = new JButton();
+        progress.setText("Progress");
+        progress.setBounds(380, 500, 100, 50);
+        progress.setFont(new Font("San Francisco", Font.PLAIN, 15));
+        progress.addActionListener(new ActionListener() {
+            // EFFECTS: Shows progress in Exercises.
+            // REQUIRES: ActionEvent.
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    u1 = interFace.jsonReader.read();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                if (u1 != null) {
+                    String name = tfExercises.getText();
+                    String toPrint = interFace.showProgress(u1,name);
+                    tfExercises.setText(toPrint);
+                } else {
+                    tfExercises.setText("Select New or Existing User");
                 }
             }
         });
@@ -163,6 +180,7 @@ public class GUI {
         frame.add(add);
         frame.add(remove);
         frame.add(show);
+        frame.add(progress);
 
         // Adding Labels
         frame.add(label1);

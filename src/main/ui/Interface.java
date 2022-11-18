@@ -91,7 +91,7 @@ public class Interface {
         } else if (command.equals("r")) {
             removeExercise(u1);
         } else if (command.equals("sp")) {
-            showProgress(u1);
+            showProgress(u1, u1.getExercises().get(0).getName());
         } else {
             System.out.println("Selection not valid...");
         }
@@ -214,20 +214,17 @@ public class Interface {
 
     // EFFECTS: Shows progress exercises in User's list of exercises.
     // REQUIRES: A User
-    public void showProgress(User u1) {
-        Scanner myObj = new Scanner(System.in);
-
-        System.out.println("Show Progress in - ");
-        String progressExerciseName = myObj.nextLine();
+    public String showProgress(User u1, String name) {
 
         ArrayList<Exercise> progressList = new ArrayList<>();
 
         for (Exercise exercise : u1.getExercises()) {
-            if (Objects.equals(exercise.getName().toLowerCase(), progressExerciseName)) {
+            if (Objects.equals(exercise.getName().toLowerCase(), name.toLowerCase())) {
                 progressList.add(exercise);
             }
         }
         if (progressList.size() >= 2) {
+            String exe = "";
             Exercise e1 = progressList.get(progressList.size() - 1);
             // Takes the last 2 Exercises and calculates progress.
             progressList.remove(progressList.size() - 1);
@@ -240,10 +237,14 @@ public class Interface {
             int volumeDifference = (e1.getReps() * e1.getSets()) - (e2.getReps() * e2.getSets());
             int volumeProgress = volumeDifference * 100 / (e2.getReps() * e2.getSets());
 
-            System.out.println("Percentage increase in weight - " + weightProgress);
-            System.out.println("Percentage increase in volume - " + volumeProgress);
+            exe += ("Percentage increase in weight - " + weightProgress + "\n");
+            exe +=("Percentage increase in volume - " + volumeProgress);
+            return exe;
         } else {
-            System.out.println("Exercise doesn't exist OR Two instances of the same exercise have not been logged yet");
+            return """
+                    Exercise doesn't exist\s
+                    OR\s
+                    Two instances of the same exercise have not been logged yet""";
         }
     }
 

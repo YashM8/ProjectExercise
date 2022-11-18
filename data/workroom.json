@@ -1,19 +1,25 @@
 {
     "exercises": [
         {
-            "reps": 8,
+            "reps": 12,
             "sets": 3,
-            "name": "Bench",
-            "weight": 95
+            "name": "bench",
+            "weight": 135
         },
         {
             "reps": 12,
             "sets": 3,
-            "name": "Curls",
-            "weight": 30
+            "name": "bench",
+            "weight": 225
+        },
+        {
+            "reps": 12,
+            "sets": 3,
+            "name": "pulldown",
+            "weight": 70
         }
     ],
     "name": "Matt",
-    "weight": 135,
-    "height": 170
+    "weight": 155,
+    "height": 180
 }

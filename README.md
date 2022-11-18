@@ -50,4 +50,7 @@ Name, Sets, Reps, Weight
 - To show the exercises, click the Show button. This loads the exercises from the JSON file.
 
 
+- To show progress, type in the exercise and click the Progress button.
+
+
 - The visual component of this project can be found at the bottom of the frame.
