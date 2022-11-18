@@ -242,8 +242,8 @@ public class Interface {
             return exe;
         } else {
             return """
-                    Exercise doesn't exist\s
-                    OR\s
+                    Exercise doesn't exist
+                    OR
                     Two instances of the same exercise have not been logged yet""";
         }
     }
