@@ -87,5 +87,6 @@ public class UserTest {
         u1.editName("Bob Martin");
         assertEquals("Bob Martin", u1.getName());
     }
+
 }
 
