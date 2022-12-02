@@ -41,10 +41,10 @@ Name, Height, Weight
 Name, Sets, Reps, Weight
 
 
-- Click the Add button to add exercises. This also saves them to the JSON file.
+- Click the Add button to add exercises. Then click Save to save them to the JSON file.
 
 
-- To remove an exercise, type the name of the exercise into the text area and click remove.
+- To remove an exercise, type the name of the exercise into the text area and click remove and click save ro save the changes to the JSON file.
 
 
 - To show the exercises, click the Show button. This loads the exercises from the JSON file.
@@ -54,3 +54,40 @@ Name, Sets, Reps, Weight
 
 
 - The visual component of this project can be found at the bottom of the frame.
+
+
+## Phase 4: Task 2 - 
+
+Thu Dec 01 20:05:37 PST 2022
+
+User Created - Bob
+
+Thu Dec 01 20:05:53 PST 2022
+
+Exercise Created - bench
+
+Thu Dec 01 20:05:53 PST 2022
+
+Added Exercise - bench
+
+Thu Dec 01 20:06:06 PST 2022
+
+Exercise Created - pulldown
+
+Thu Dec 01 20:06:06 PST 2022
+
+Added Exercise - pulldown
+
+Thu Dec 01 20:06:34 PST 2022
+
+Exercise Created - curls
+
+Thu Dec 01 20:06:34 PST 2022
+
+Added Exercise - curls
+
+Thu Dec 01 20:06:43 PST 2022
+
+Removed exercise - curls
+
+

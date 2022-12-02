@@ -2,6 +2,8 @@
 
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Exercise;
 import model.User;
 import persistence.JsonReader;
@@ -18,13 +20,7 @@ public class Interface {
     JsonWriter jsonWriter;
     JsonReader jsonReader;
 
-
     // EFFECTS: constructs Interface and runs application
-    public void oldInterface() throws IOException {
-        chooseUser();
-        runInterface();
-    }
-
     public Interface() throws IOException {
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -103,7 +99,6 @@ public class Interface {
             jsonWriter.open();
             jsonWriter.write(u1);
             jsonWriter.close();
-            System.out.println("Saved " + u1.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -114,7 +109,6 @@ public class Interface {
     void loadExercises() {
         try {
             u1 = jsonReader.read();
-            System.out.println("Loaded " + u1.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
@@ -273,8 +267,8 @@ public class Interface {
     // REQUIRES: A string and User.
     public void removeWithName(User u1, String name) {
         if (!(u1.getExercises().isEmpty())) {
-            u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), name));
-            System.out.println("Removed Exercise");
+            //u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), name));
+            u1.removeExercise(name.toLowerCase());
         }
     }
 }

@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
     /*
     Creates a User with given name, height, weight and a list of exercises associated with a user.
@@ -23,6 +22,7 @@ public class User {
         this.height = height;
         this.weight = weight;
         this.exercises = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("User Created - " + this.name));
     }
 
     // MODIFIES: this.
@@ -30,12 +30,8 @@ public class User {
     // EFFECTS: this.exercises and removes all instances of Exercise with <name>.
     public void removeExercise(String name) {
         if (!(this.exercises.isEmpty())) {
-            this.exercises.removeIf(exercise -> exercise.getName().equals(name));
-//            for (Exercise exercise: this.exercises) {
-//                if (exercise.getName().equals(name)) {
-//                    this.exercises.remove(exercise);
-//                }
-//            }
+            this.exercises.removeIf(exercise -> exercise.getName().equalsIgnoreCase(name));
+            EventLog.getInstance().logEvent(new Event("Removed exercise - " + name.toLowerCase()));
         }
     }
 
@@ -44,6 +40,7 @@ public class User {
     // EFFECTS: Adds an instance of Exercise with <name>, <sets>, <reps> and <weight> to this.exercises.
     public void addExercise(Exercise e1) {
         this.exercises.add(e1);
+        EventLog.getInstance().logEvent(new Event("Added Exercise - " + e1.getName().toLowerCase()));
     }
 
     /*

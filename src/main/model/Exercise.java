@@ -20,6 +20,7 @@ public class Exercise {
         this.reps = reps;
         this.weight = weight;
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("Exercise Created - " + this.name.toLowerCase()));
     }
 
     /*

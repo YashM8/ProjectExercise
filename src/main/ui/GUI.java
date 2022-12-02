@@ -1,12 +1,13 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Exercise;
 import model.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.IOException;
 
 public class GUI {
@@ -21,19 +22,53 @@ public class GUI {
         frame.setTitle("Exercise Tracker");
         frame.setFont(new Font("San Francisco", Font.PLAIN, 15));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 800);
+        frame.addWindowListener(new WindowListener() {
+            public void windowOpened(WindowEvent e) {
+            }
+
+            public void windowClosing(WindowEvent e) {
+                for (Event event: EventLog.getInstance()) {
+                    System.out.println(event.toString());
+                }
+            }
+
+            public void windowClosed(WindowEvent e) {
+            }
+
+            public void windowIconified(WindowEvent e) {
+            }
+
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            public void windowActivated(WindowEvent e) {
+            }
+
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
+        frame.setSize(500, 1000);
         frame.setLayout(new BorderLayout());
 
         // User Label
-        JLabel label1 = new JLabel("New User? ");
-        label1.setBounds(10, 0, 200, 200);
+        JLabel label1 = new JLabel("New User?");
+        label1.setBounds(10, 0, 200, 100);
         label1.setVerticalAlignment(JLabel.TOP);
         label1.setFont(new Font("San Francisco", Font.PLAIN, 25));
 
+        JLabel label4 = new JLabel("Name, Height(cm), Weight(lbs)");
+        label4.setBounds(10, 40, 350, 100);
+        label4.setFont(new Font("San Francisco", Font.PLAIN, 15));
+
         // Exercises Label2
         JLabel label2 = new JLabel("Add Exercises -");
-        label2.setBounds(10, 75, 200, 200);
+        label2.setBounds(10, 55, 200, 200);
         label2.setFont(new Font("San Francisco", Font.PLAIN, 25));
+
+        JLabel label3 = new JLabel("Name, Sets, Reps, Weight(lbs)");
+        label3.setBounds(10, 85, 400, 200);
+        label3.setFont(new Font("San Francisco", Font.PLAIN, 15));
 
         // Text Field User
         JTextField tfUser = new JTextField();
@@ -52,7 +87,7 @@ public class GUI {
 
         // Yes button
         JButton yes = new JButton();
-        yes.setBounds(20, 40, 100, 50);
+        yes.setBounds(260, 50, 100, 50);
         yes.setText("Yes");
         yes.setFont(new Font("San Francisco", Font.PLAIN, 15));
         yes.addActionListener(new ActionListener() {
@@ -70,7 +105,7 @@ public class GUI {
 
         // No button
         JButton no = new JButton();
-        no.setBounds(200, 40, 100, 50);
+        no.setBounds(375, 50, 100, 50);
         no.setText("No");
         no.setFont(new Font("San Francisco",Font.PLAIN, 15));
         no.addActionListener(new ActionListener() {
@@ -82,7 +117,7 @@ public class GUI {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                interFace.loadExercises();
+                //interFace.loadExercises();
                 tfUser.setText("User Loaded");
             }
         });
@@ -90,7 +125,7 @@ public class GUI {
         // Add button
         JButton add = new JButton();
         add.setBounds(20, 500, 100, 50);
-        add.setText("Add");
+        add.setText("Add & Save");
         add.setFont(new Font("San Francisco", Font.PLAIN, 15));
         add.addActionListener(new ActionListener() {
             // EFFECTS: Adds Exercises.
@@ -99,8 +134,8 @@ public class GUI {
                 if (!tfExercises.getText().equals("")) {
                     Exercise e1 = interFace.parseAndExercise(tfExercises.getText());
                     u1.addExercise(e1);
-                    interFace.saveExercises(u1);
-                    tfExercises.setText("Exercise Added and Saved");
+                    //interFace.saveExercises(u1);
+                    tfExercises.setText("Exercise Added");
                 } else {
                     tfExercises.setText("Enter Exercise");
                 }
@@ -117,14 +152,28 @@ public class GUI {
             // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
                 if (!tfExercises.getText().equals("")) {
-                    interFace.removeWithName(u1, tfExercises.getText());
-                    interFace.saveExercises(u1);
-                    tfExercises.setText("Exercise Removed");
+                    if (u1 != null) {
+                        interFace.removeWithName(u1, tfExercises.getText().toLowerCase().trim());
+                        tfExercises.setText("Exercise Removed");
+                    } else {
+                        tfExercises.setText("Select New or Existing User");
+                    }
                 } else {
                     tfExercises.setText("Enter Exercise Name");
                 }
             }
         });
+
+        // Save Button
+        JButton save = new JButton("Save");
+        save.setBounds(140, 575, 100, 50);
+        save.setFont(new Font("San Francisco", Font.PLAIN, 15));
+        save.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                interFace.saveExercises(u1);
+            }
+        });
+
 
         // Show button
         JButton show = new JButton();
@@ -140,6 +189,17 @@ public class GUI {
                 } else {
                     tfExercises.setText("Select New or Existing User");
                 }
+            }
+        });
+
+        // Save Button
+        JButton load = new JButton("Load");
+        load.setBounds(260, 575, 100, 50);
+        load.setFont(new Font("San Francisco", Font.PLAIN, 15));
+        load.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                interFace.loadExercises();
+                tfExercises.setText("Saved");
             }
         });
 
@@ -176,10 +236,14 @@ public class GUI {
         frame.add(remove);
         frame.add(show);
         frame.add(progress);
+        frame.add(save);
+        frame.add(load);
 
         // Adding Labels
         frame.add(label1);
         frame.add(label2);
+        frame.add(label3);
+        frame.add(label4);
 
         // Adding Text Fields
         frame.add(tfUser);
