@@ -2,8 +2,6 @@
 
 package ui;
 
-import model.Event;
-import model.EventLog;
 import model.Exercise;
 import model.User;
 import persistence.JsonReader;
@@ -267,7 +265,6 @@ public class Interface {
     // REQUIRES: A string and User.
     public void removeWithName(User u1, String name) {
         if (!(u1.getExercises().isEmpty())) {
-            //u1.getExercises().removeIf(exercise -> Objects.equals(exercise.getName(), name));
             u1.removeExercise(name.toLowerCase());
         }
     }

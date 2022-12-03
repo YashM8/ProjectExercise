@@ -117,7 +117,6 @@ public class GUI {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                //interFace.loadExercises();
                 tfUser.setText("User Loaded");
             }
         });
