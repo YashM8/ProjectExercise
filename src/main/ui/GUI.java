@@ -124,7 +124,7 @@ public class GUI {
         // Add button
         JButton add = new JButton();
         add.setBounds(20, 500, 100, 50);
-        add.setText("Add & Save");
+        add.setText("Add");
         add.setFont(new Font("San Francisco", Font.PLAIN, 15));
         add.addActionListener(new ActionListener() {
             // EFFECTS: Adds Exercises.
@@ -168,6 +168,8 @@ public class GUI {
         save.setBounds(140, 575, 100, 50);
         save.setFont(new Font("San Francisco", Font.PLAIN, 15));
         save.addActionListener(new ActionListener() {
+            // EFFECTS: Saves file.
+            // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
                 interFace.saveExercises(u1);
             }
@@ -191,14 +193,16 @@ public class GUI {
             }
         });
 
-        // Save Button
+        // Load Button
         JButton load = new JButton("Load");
         load.setBounds(260, 575, 100, 50);
         load.setFont(new Font("San Francisco", Font.PLAIN, 15));
         load.addActionListener(new ActionListener() {
+            // EFFECTS: Loads file.
+            // REQUIRES: ActionEvent.
             public void actionPerformed(ActionEvent e) {
                 interFace.loadExercises();
-                tfExercises.setText("Saved");
+                tfExercises.setText("Loaded");
             }
         });
 

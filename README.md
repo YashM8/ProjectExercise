@@ -91,3 +91,12 @@ Thu Dec 01 20:06:43 PST 2022
 Removed exercise - curls
 
 ## Phase 4: Task 3 - 
+
+- I would create the choice to have multiple users.
+- 
+
+- I would split my GUI class into subclasses to make debugging easier.
+- 
+
+- I would have single point of control for my setBounds() method to have everything displayed proportionally in the GUI 
+without having to put in a carefully calculated numbers for each component. 
